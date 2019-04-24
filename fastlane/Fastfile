@@ -10,10 +10,10 @@ lane :release do |options|
 
   git_pull
 
-  libraryVersionUsed = read_podspec['dependencies']['R.swift.Library'].first
-  unless prompt(text: "R.swift.Library #{libraryVersionUsed} is defined as dependency.\nAdjust podspec now if needed. Ready to continue?".green, boolean: true, ci_input: "")
-    raise "Aborted by user".red
-  end
+  #libraryVersionUsed = read_podspec['dependencies']['R.swift.Library'].first
+  #unless prompt(text: "R.swift.Library #{libraryVersionUsed} is defined as dependency.\nAdjust podspec now if needed. Ready to continue?".green, boolean: true, ci_input: "")
+  #  raise "Aborted by user".red
+  #end
 
   currentVersion = version_get_podspec()
   UI.message "Current R.swift podspec version is #{currentVersion}"
