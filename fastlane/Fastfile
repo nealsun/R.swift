@@ -90,7 +90,7 @@ lane :release do |options|
     file_path: zipPath
   )
 
-  pod_push
+  #pod_push
 end
 
 desc "Runs all the tests"
