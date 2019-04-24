@@ -22,6 +22,7 @@ struct Type: UsedTypesProvider, CustomStringConvertible, Hashable {
   static let _Any = Type(module: .stdLib, name: "Any")
   static let _AnyObject = Type(module: .stdLib, name: "AnyObject")
   static let _String = Type(module: .stdLib, name: "String")
+  static let _IconFont = Type(module: .stdLib, name: "String")
   static let _Int = Type(module: .stdLib, name: "Int")
   static let _UInt = Type(module: .stdLib, name: "UInt")
   static let _Double = Type(module: .stdLib, name: "Double")
@@ -58,6 +59,7 @@ struct Type: UsedTypesProvider, CustomStringConvertible, Hashable {
   static let ImageResource = Type(module: "Rswift", name: "ImageResource")
   static let StringResource = Type(module: "Rswift", name: "StringResource")
   static let Strings = Type(module: "Rswift", name: "Strings")
+  static let IconFontResource = Type(module: "Rswift", name: "IconFontResource")
   static let Validatable = Type(module: "Rswift", name: "Validatable")
   static let TypedStoryboardSegueInfo = Type(module: "Rswift", name: "TypedStoryboardSegueInfo", genericArgs: [TypeVar(description: "Segue", usedTypes: []), TypeVar(description: "Source", usedTypes: []), TypeVar(description: "Destination", usedTypes: [])])
 

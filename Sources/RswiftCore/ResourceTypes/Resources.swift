@@ -25,6 +25,8 @@ struct Resources {
     
   let reusables: [Reusable]
 
+  let iconFonts: [IconFont]
+
   init(resourceURLs: [URL], fileManager: FileManager) {
     
     var assetFolders = [AssetFolder]()
@@ -34,7 +36,8 @@ struct Resources {
     var storyboards = [Storyboard]()
     var resourceFiles = [ResourceFile]()
     var localizableStrings = [LocalizableStrings]()
-    
+    var iconFonts = [IconFont]()
+
     resourceURLs.forEach { url in
       if let nib = tryResourceParsing({ try Nib(url: url) }) {
         nibs.append(nib)
@@ -47,6 +50,12 @@ struct Resources {
         assetFolders.append(asset)
       } else if let font = tryResourceParsing({ try Font(url: url) }) {
         fonts.append(font)
+        let iconFontCssUrl = url.deletingLastPathComponent().appendingPathComponent("\(font.name).css")
+        if fileManager.fileExists(atPath: iconFontCssUrl.path) {
+          if let iconFont = tryResourceParsing({ try IconFont(url: iconFontCssUrl) }) {
+            iconFonts.append(iconFont)
+          }
+        }
       } else if let storyboard = tryResourceParsing({ try Storyboard(url: url) }) {
         storyboards.append(storyboard)
       } else if let resourceFile = tryResourceParsing({ try ResourceFile(url: url) }) {
@@ -63,7 +72,7 @@ struct Resources {
     self.storyboards = storyboards
     self.resourceFiles = resourceFiles
     self.localizableStrings = localizableStrings
-    
+    self.iconFonts = iconFonts
     reusables = (nibs.map { $0 as ReusableContainer } + storyboards.map { $0 as ReusableContainer })
       .flatMap { $0.reusables }
   }
