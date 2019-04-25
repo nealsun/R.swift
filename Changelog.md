@@ -1,3 +1,7 @@
+## 5.0.4
+
+add support for iconfont
+
 ## 5.0.3
 
 - Fix for stand alone image files (Thanks @CraigsOverItAll)
