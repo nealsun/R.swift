@@ -28,7 +28,8 @@ struct IconFont: WhiteListedExtensionsResourceType {
 
     let content = try! String(contentsOf: url, encoding: .utf8)
 //    "\\.(.*):before\\s{\\n\\s*content:\\s\"\\\\(\\w*)\""
-    let reg = try! NSRegularExpression(pattern: #"\.(.*):before\s\{\n\s*content:\s"\\(\w*)""#, options: [])
+//    #"\.(.*):before\s\{\n\s*content:\s"\\(\w*)""#
+    let reg = try! NSRegularExpression(pattern:  "\\.(.*):before\\s\\{\\n\\s*content:\\s\"\\\\(\\w*)\"", options: [])
     reg.enumerateMatches(in: content, options: [], range: content.fullRange) { (match, flags, stop) in
       guard let match = match else { return }
 
